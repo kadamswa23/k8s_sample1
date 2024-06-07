@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: spring-jpa
+    group: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-jpa
+  template:
+    metadata:
+      labels:
+        app: spring-jpa
+    spec:
+      containers:
+      - name: spring-jpa
+        image: spring-jpa:0.0.1
+        ports:
+          "-container": 8080

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  labels:
+    app: pgdb
+    group: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgdb
+  template:
+    metadata:
+      labels:
+        app: pgdb
+    spec:
+      containers:
+        - name: pgdb
+          image: postgres:latest
+          ports:
+            "-container": 5432
+          env:
+            - POSTGRES_USER: postgres
+              POSTGRES_PASSWORD: admin
+              POSTGRES_DB: test

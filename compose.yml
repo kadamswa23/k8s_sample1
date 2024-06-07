@@ -1,0 +1,17 @@
+services:
+  backend-service:
+    image:  myapp:0.0.4
+    ports:
+      - "8080:8080"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+
+  database:
+    container_name: pgdb
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    env_file:
+      - "./db.env"
+
+

@@ -6,7 +6,7 @@ metadata:
     app: pgdb
     group: db
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: pgdb
@@ -19,8 +19,7 @@ spec:
         - name: pgdb
           image: postgres:latest
           ports:
-            "-container": 5432
-          env:
-            - POSTGRES_USER: postgres
-              POSTGRES_PASSWORD: admin
-              POSTGRES_DB: test
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+               name: postgres-secret

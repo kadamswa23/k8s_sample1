@@ -6,7 +6,7 @@ metadata:
     app: spring-jpa
     group: app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: spring-jpa
@@ -17,6 +17,9 @@ spec:
     spec:
       containers:
       - name: spring-jpa
-        image: spring-jpa:0.0.1
+        image: swa23/springboot-docker-app:0.0.5
         ports:
-          "-container": 8080
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod

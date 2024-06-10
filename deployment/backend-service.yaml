@@ -5,9 +5,9 @@ metadata:
   labels:
     group: app
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: spring-jpa
   ports:
-    -port: 8080
-    targetPort: 8001
+    - port: 8080
+      targetPort: 8080
